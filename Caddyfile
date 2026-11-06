@@ -6,5 +6,14 @@
 :{$PORT:8080} {
     root * /usr/share/caddy
     encode gzip
+
+    # HTML, CSS și JS se reverifică la fiecare vizită (304 rapid dacă nu s-au schimbat)
+    @revalidate path / *.html *.css *.js
+    header @revalidate Cache-Control "no-cache"
+
+    # Media se schimbă rar: cache 30 de zile
+    @media path *.mp4 *.jpg *.jpeg *.png *.webp *.svg
+    header @media Cache-Control "public, max-age=2592000"
+
     file_server
 }

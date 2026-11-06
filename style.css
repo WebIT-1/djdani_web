@@ -147,14 +147,19 @@ summary:focus-visible,
   display: inline-flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: .45rem;
+  gap: .5rem 1.4rem;
   margin-top: 2rem;
   color: #cfced3;
   font-size: .8rem;
 }
 .hero-proof strong { color: #fff; }
 .hero-proof .stars { color: var(--lime); letter-spacing: .08em; }
+.hero-proof-item { display: inline-flex; align-items: center; gap: .45rem; white-space: nowrap; }
+.hero-proof .check { color: var(--lime); font-weight: 700; }
 .hero-proof:hover strong { text-decoration: underline; text-underline-offset: 3px; }
+
+.hero-actions { flex-wrap: wrap; row-gap: 1.2rem; }
+.hero-actions .button { white-space: nowrap; }
 
 /* Servicii: săgeata devine CTA intern */
 .services-foot { padding-top: 3rem; }
@@ -323,7 +328,6 @@ summary:focus-visible,
 @media (max-width: 600px) {
   .hero-content { padding-top: 3rem; }
   .hero-proof { margin-top: 1.6rem; font-size: .76rem; }
-  .hero-proof-sep { display: none; }
   .process, .faq { padding-top: 5rem; padding-bottom: 5rem; }
   .process h2, .faq h2 { font-size: clamp(2.7rem, 12vw, 4rem); margin-bottom: 2.5rem; }
   .faq h2 { margin-bottom: 0; }
