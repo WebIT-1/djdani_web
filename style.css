@@ -339,3 +339,35 @@ summary:focus-visible,
   .button, .service-item, .service-arrow, .mobile-sticky-cta, .faq summary:after, .youtube-play span { transition: none !important; }
   .button:hover { transform: none; }
 }
+
+/* ========================================
+   RECENZII PE TELEFON: swipe nativ
+   Caruselul Starwall își tratează singur gesturile touch și se poate bloca
+   pe unele telefoane. Pe ecrane touch lăsăm browserul să facă scroll-ul
+   orizontal (scroll-snap); handlerele widgetului sunt oprite în script.js.
+======================================== */
+
+@media (hover: none) and (pointer: coarse) {
+  #reviews-widget-372 .reviews-widget__carousel-viewport {
+    overflow-x: auto !important;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  #reviews-widget-372 .reviews-widget__carousel-viewport::-webkit-scrollbar { display: none; }
+  #reviews-widget-372 .reviews-widget__reviews-container {
+    transform: none !important;
+    transition: none !important;
+    touch-action: auto !important;
+  }
+  /* cardul următor se vede pe margine, ca să fie clar că se poate glisa */
+  #reviews-widget-372 .reviews-widget__review {
+    width: 86% !important;
+    margin-right: 12px !important;
+    scroll-snap-align: start;
+  }
+  #reviews-widget-372 .reviews-widget__review:last-child { margin-right: 0 !important; }
+  /* punctele widgetului nu mai urmăresc poziția, așa că le ascundem */
+  #reviews-widget-372 .reviews-widget__carousel-dots { display: none !important; }
+}

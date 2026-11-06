@@ -54,6 +54,11 @@ const reviewsWidget = document.querySelector('#reviews-widget-372');
 if (reviewsWidget) {
   const loadWidget = () => { const script = document.createElement('script'); script.src = 'https://starwall.io/embed/hH5RHPOK4oReMRum3GStqKy2oVnr63FK/widget.js'; script.async = true; document.body.appendChild(script); };
   new IntersectionObserver((entries, instance) => { if (entries.some((entry) => entry.isIntersecting)) { instance.disconnect(); loadWidget(); } }, { rootMargin: '800px 0px' }).observe(reviewsWidget);
+  // Pe touch, swipe-ul îl face browserul (vezi style.css): oprim gesturile caruselului Starwall
+  if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
+    const stopCarouselGesture = (event) => { if (event.target.closest('.reviews-widget__reviews-container')) event.stopPropagation(); };
+    ['touchstart', 'touchmove', 'touchend', 'touchcancel'].forEach((type) => reviewsWidget.addEventListener(type, stopCarouselGesture, { capture: true, passive: true }));
+  }
 }
 
 /* ========================================
